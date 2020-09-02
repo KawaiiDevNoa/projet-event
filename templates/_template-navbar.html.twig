@@ -10,24 +10,40 @@
                 <a class="navbar-brand" href="#">🐘 <strong>Elephant Memory </strong></a>
                 <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
                     <li class="nav-item active">
-                        <a class="nav-link" href="#">Accueil <span class="sr-only">(current)</span></a>
+                        <a class="nav-link" href="#">Accueil</a>
+                    </li>
+                    
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">Mes évenements</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="#">Link</a>
+                        <a class="nav-link " href="#"  aria-disabled="true">Mon organisateur</a>
                     </li>
-                    <li class="nav-item">
-                        <a class="nav-link disabled" href="#" tabindex="-1" aria-disabled="true">Disabled</a>
-                    </li>
+                    
                 </ul>
                 <form class="form-inline my-2 my-lg-0  ">
                     
                     {# <button class="btn btn-light my-2 my-sm-0 mr-2" type="submit">Inscription</button> #}
+                     <div class="form-group">
+                    {% if app.user %}
+                        
+                        <a class="btn btn-light col my-2 my-sm-0 mr-2" href="{{ path('app_profil_edit',{id: app.user.id}) }}">
+                        🟢
+                          <strong>{{ app.user.pseudo }}</strong>
+                        </a>
+                        <a class="btn btn-light col my-2 my-sm-0 mr-2" href="{{ path('app_login') }}">
+                            <strong>Déconnexion</strong>
+                        </a>
+                     </div>
+                          {
+                     {% else %}
                 
-                    <button class="btn btn-light col-12 my-2 my-sm-0 mr-2" type="submit"> 👤 Connexion</button>
+                    <a class="btn btn-light col-12 my-2 my-sm-0 mr-2" href="{{ path('app_logout') }}"> 👤 Connexion</a>
                    
                    <div class="col-12 text-center">
-                       <a class="badge bagde-pill badge-success " href="">inscription</a>
+                       <a class="badge bagde-pill badge-success " href="{{ path('app_register') }}">inscription</a>
                    </div>
+                   {% endif %}
                 </form>
             
             </div>

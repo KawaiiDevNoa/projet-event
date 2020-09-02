@@ -16,7 +16,7 @@ use Symfony\Component\Validator\Constraints\Length;
 use Symfony\Component\Validator\Constraints\NotBlank;
 use Symfony\Component\Validator\Constraints\Regex;
 
-class RegistrationFormType extends AbstractType
+class EditFormType extends AbstractType
 {
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
@@ -48,25 +48,7 @@ class RegistrationFormType extends AbstractType
                     new Email(['message' =>'cette adress n\'est pas une adress email valide.'])
                     ]
             ])
-            ->add('plainPassword', RepeatedType::class, [
-                'type' => PasswordType::class,
-                'invalid_message' => 'les mots de passe ne corespondent pas',
-                // le champs n'est pas lié a l'objet  User du formulaire,
-
-                //le mdp sera hashé depuis le controlleur
-                'mapped' => false,
-                'constraints' => [
-                    new NotBlank([
-                        'message' => 'Mot de passe manquant',
-                    ]),
-                    new Length([
-                        'min' => 6,
-                        'minMessage' => 'le mot de passe doit contenir au moins {{ limit }} caractères',
-                        // max length allowed by Symfony for security reasons
-                        'max' => 4096,
-                    ]),
-                ],
-            ])
+            
         
     
             
