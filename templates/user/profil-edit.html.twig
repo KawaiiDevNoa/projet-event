@@ -1,0 +1,23 @@
+{% extends '_template-navbar.html.twig' %}
+
+{% block title %}Modification profil{% endblock %}
+
+{% block content %}
+
+ <div class="container-fluid d-flex justify-content-center ">
+    <div class="section mt-5 p-3 bg-light shadow ">
+       <h1 class="text-center">Modification profil</h1>
+        {{form_start(registration_form)}}
+            {{ form_row(registration_form.email,{label:"Adresse email"}) }}
+            {{ form_row(registration_form.pseudo,{label:"Pseudo"}) }}
+
+                 <button type="submit" class="btn btn-primary">Enregistrer</button>
+        {{form_end(registration_form)}}
+
+
+       
+
+    </div>
+  </div>
+
+{% endblock %}
