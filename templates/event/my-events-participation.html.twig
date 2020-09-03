@@ -1,0 +1,58 @@
+
+    {% extends '_template-navbar.html.twig' %}
+
+
+{% block title %}Mes participations{% endblock %}
+
+
+{% block  content %}
+ <div class="container-fluid ">
+     <div class="d-flex justify-content-between">
+        <div class="">
+        </div>
+        <div class="">
+            <h1>Mes participations</h1>
+             
+            {# <p>{{app.user.pseudo}}</p> #}
+        </div>
+        <div class="">
+            <label for="exampleFormControlSelect1">Trier par</label>
+            <select class="form-control" id="exampleFormControlSelect1">
+            <option>ordre croissant</option>
+            <option>ordre décroissant</option>
+            </select>
+        </div>
+  
+     </div>
+     {# ici event (peut etre nommé de plusieurs facon est le nom qu'on donne au tableau events #}
+     {% for allEvent in allEvents %}
+     <section class=" ">
+
+        <div class="w-100 shadow text-center mt-4 p-2 d-flex justify-content-between">
+            <div>
+                    <h2 class="mt-4">{{allEvent.nom}}</h2>
+                    <br>
+                    
+                
+                    
+                    <p class="font-weight-bold">Date:</p>
+                    <p>{{allEvent.date|date("m/d/Y")}}</p>
+                    
+            </div>
+            
+            {# <p>{{event.date}}</p> #}
+            <div class="bg-dark" >
+               <a href="#" type="button" class="btn btn-warning " title="participer">voir</a>
+               <a href="#" type="button" class="btn btn-danger " title="participer">annuler</a>
+               
+            </div>
+        </div>
+        
+
+     </section>
+     {% endfor %}
+ </div>
+
+{% endblock %}
+
+  

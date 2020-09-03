@@ -46,11 +46,17 @@ class User implements UserInterface
      */
     private $token;
 
+    /**
+     * @ORM\ManyToMany(targetEntity=Events::class)
+     */
+    private $participation;
+
     
 
     public function __construct()
     {
         $this->eventsAccess = new ArrayCollection();
+        $this->participation = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -151,6 +157,32 @@ class User implements UserInterface
     public function renewToken(): self
     {
         $this->token = bin2hex(random_bytes(16));
+
+        return $this;
+    }
+
+    /**
+     * @return Collection|Events[]
+     */
+    public function getParticipation(): Collection
+    {
+        return $this->participation;
+    }
+
+    public function addParticipation(Events $participation): self
+    {
+        if (!$this->participation->contains($participation)) {
+            $this->participation[] = $participation;
+        }
+
+        return $this;
+    }
+
+    public function removeParticipation(Events $participation): self
+    {
+        if ($this->participation->contains($participation)) {
+            $this->participation->removeElement($participation);
+        }
 
         return $this;
     }

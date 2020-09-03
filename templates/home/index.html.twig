@@ -47,7 +47,7 @@
             
             {# <p>{{event.date}}</p> #}
             <div class=" d-flex justify-content-md-center mb-4">
-               <a href="#" type="button" class="btn btn-danger " title="participer">je participe</a>
+               <a href="{{path('app_participation',{id: allEvent.id,token: csrf_token('event-participate')}) }}" type="button" class="btn btn-success " title="participer">je participe</a>
                
             </div>
         </div>

@@ -78,10 +78,12 @@ class EventController extends AbstractController
     {
          // recupération du jeton csrf
          $token = $request->get('token');
-
+         
+         // le csrf est un fonction et on lui donne un argument qu'on réutilisera dans le href
          if($this->isCsrfTokenValid("event-delete",$token)){
 
             //supression
+
             $entityManager->remove($events);
             $entityManager->flush();
 
@@ -106,4 +108,48 @@ class EventController extends AbstractController
             'events' => $myEvents,
         ]);
     }
+
+     /**
+     * 1/Participation aux  évènements
+     * @Route("/my-participation/{id}", name="app_participation")
+     */
+
+     public function participation(Events $events, EntityManagerInterface $entityManager,Request $request)
+     {
+           // recupération du jeton csrf
+         $token = $request->get('token');
+         
+         // le csrf est un fonction et on lui donne un argument qu'on réutilisera dans le href
+         if($this->isCsrfTokenValid("event-participate",$token)){
+
+            //ajout
+            //getuser c'est l'utilisateur connecté et donc on passe par lui pour recup la methode souhaité dans ce cas comme la methode est absente dans event
+            $this->getUser()->addParticipation($events);
+            $entityManager->flush();
+
+           $this->addFlash('info', 'Bravo!! Vous participez à un évènement.');
+
+         }
+         return $this->redirectToRoute("app_event_participation");
+        
+       
+    }
+     /**
+     * 2/Mes participation
+     * @Route("/my-events-participation", name="app_event_participation")
+     */
+
+     public function eventsParticipation()
+     {
+        
+        return $this->render('event/my-events-participation.html.twig', [
+                'allEvents' =>$this->getUser()->getParticipation() ,
+             ]); 
+     }
+
+      // ma page mes participations
+     // return $this->render('event/my-events-participation.html.twig', [
+        //     'allEvents' => $repository->findAll(),
+        // ]);
+     
 }
