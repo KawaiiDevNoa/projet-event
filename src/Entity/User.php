@@ -3,6 +3,8 @@
 namespace App\Entity;
 
 use App\Repository\UserRepository;
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Security\Core\User\UserInterface;
 
@@ -43,6 +45,13 @@ class User implements UserInterface
      * @ORM\Column(type="string", length=255)
      */
     private $token;
+
+    
+
+    public function __construct()
+    {
+        $this->eventsAccess = new ArrayCollection();
+    }
 
     public function getId(): ?int
     {
@@ -145,4 +154,5 @@ class User implements UserInterface
 
         return $this;
     }
+
 }

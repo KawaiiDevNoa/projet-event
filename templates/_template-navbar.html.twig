@@ -13,11 +13,12 @@
                         <a class="nav-link" href="#">Accueil</a>
                     </li>
                     
+
                     <li class="nav-item">
-                        <a class="nav-link" href="#">Mes évenements</a>
+                        <a class="nav-link" href="{{ path('app_event_list') }}">Mes évenements</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link " href="#"  aria-disabled="true">Mon organisateur</a>
+                        <a class="nav-link " href="#"  aria-disabled="true">Mes particpations</a>
                     </li>
                     
                 </ul>
@@ -26,7 +27,11 @@
                     {# <button class="btn btn-light my-2 my-sm-0 mr-2" type="submit">Inscription</button> #}
                      <div class="form-group">
                     {% if app.user %}
+                         
+                        <a class="btn btn-light col my-2 my-sm-0 mr-2" href="{{ path('app_event') }}">
                         
+                          <strong>CreateEvent</strong>
+                        </a>
                         <a class="btn btn-light col my-2 my-sm-0 mr-2" href="{{ path('app_profil_edit',{id: app.user.id}) }}">
                         🟢
                           <strong>{{ app.user.pseudo }}</strong>
