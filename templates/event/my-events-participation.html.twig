@@ -6,7 +6,7 @@
 
 
 {% block  content %}
-{# le h temporaire #}
+{# le vh temporaire #}
  <div class="container-fluid vh-100 "> 
     <div class="row bg-warning p-4  ">
         <div class="col-4">
@@ -48,7 +48,7 @@
             {# <p>{{event.date}}</p> #}
             <div class=" col-6 d-flex justify-content-end " >
                 <div class="">
-                    <a href="#" type="button" class="btn btn-warning " title="consulter">Consulter</a>
+                    <a href="{{path('consult_event',{id: allEvent.id}) }}" type="button" class="btn btn-warning " title="consulter">Consulter</a>
                
                     <a href="{{path('cancellation',{id: allEvent.id,token: csrf_token('event-cancel')}) }}" type="button" class="btn btn-danger " title="annuler">Annuler</a>
                </div>
