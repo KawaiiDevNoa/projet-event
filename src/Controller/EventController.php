@@ -9,6 +9,7 @@ use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Routing\Annotation\Route;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
 
 class EventController extends AbstractController
 {
@@ -39,11 +40,12 @@ class EventController extends AbstractController
         ]);
     }
 
-      // modifier un évènement
+      
       
     /**
-     * Crer un évènement
+     * modifier un évènement
      * @Route("/edit-my-event/{id}", name="app_edit_my_event")
+     * @IsGranted("EVENT_EDIT", subject="events")
      */
 
     public function editEvent(Events $events , Request $request,EntityManagerInterface $entityManager)
@@ -73,6 +75,7 @@ class EventController extends AbstractController
     /**
      * supprimer un évènement
      * @Route("/event-delete/{id}", name="delete")
+     * @IsGranted("EVENT_EDIT", subject="events")
      */
     public function eventsDelete(Events $events,EntityManagerInterface $entityManager,Request $request)
     {
@@ -102,7 +105,10 @@ class EventController extends AbstractController
 
     public function eventList(EventsRepository $repository)
     {
-        $myEvents = $repository->findAll();
+        // on sélectionne uniquement l'utilisateur connecté a qui appartient l'évènement
+        $myEvents = $repository->findBy([
+          "auteur" => $this->getUser(),
+        ]);
         return $this->render('event/my-events-list.html.twig', [
             // events est une variable contenant un tableau et recupère tt ce qui se trouve dans $myevents
             'events' => $myEvents,
@@ -147,6 +153,31 @@ class EventController extends AbstractController
              ]); 
      }
 
+    /**
+     * 3/annulation d'une participation
+     *  @Route("/my-cancellation/{id}", name="cancellation")
+     * 
+     */
+    public function cancellation(Events $events, EntityManagerInterface $entityManager,Request $request)
+    {
+          // recupération du jeton csrf
+        $token = $request->get('token');
+        
+        // le csrf est un fonction et on lui donne un argument qu'on réutilisera dans le href
+        if($this->isCsrfTokenValid("event-cancel",$token)){
+
+           //annuler
+           //getuser c'est l'utilisateur connecté et donc on passe par lui pour recup la methode souhaité dans ce cas comme la methode est absente dans event
+           $this->getUser()->removeParticipation($events);
+           $entityManager->flush();
+
+          $this->addFlash('info', 'Vous venez d\'annuler votre évènement.');
+
+        }
+        return $this->redirectToRoute("app_event_participation");
+       
+      
+   }
       // ma page mes participations
      // return $this->render('event/my-events-participation.html.twig', [
         //     'allEvents' => $repository->findAll(),

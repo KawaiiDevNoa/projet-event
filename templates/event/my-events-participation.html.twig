@@ -7,44 +7,46 @@
 
 {% block  content %}
  <div class="container-fluid ">
-     <div class="d-flex justify-content-between">
-        <div class="">
+    <div class="row bg-warning p-4 ">
+        <div class="col-4">
         </div>
-        <div class="">
-            <h1>Mes participations</h1>
-             
+        <div class="col-4 text-center text-light">
+           <h1>Mes Participations</h1>
             {# <p>{{app.user.pseudo}}</p> #}
         </div>
-        <div class="">
-            <label for="exampleFormControlSelect1">Trier par</label>
-            <select class="form-control" id="exampleFormControlSelect1">
-            <option>ordre croissant</option>
-            <option>ordre décroissant</option>
-            </select>
+        <div class="col-4 d-flex justify-content-end">
+           <div class="w-50">
+              <label for="exampleFormControlSelect1">Trier par</label>
+              <select class="form-control" id="exampleFormControlSelect1">
+              <option>ordre croissant </option>
+              <option>ordre décroissant</option>
+              </select>
+           </div>
         </div>
   
      </div>
+     <p class="h3 font-bold">Nombre d'évènements: {{allEvents|length}}</p>
      {# ici event (peut etre nommé de plusieurs facon est le nom qu'on donne au tableau events #}
      {% for allEvent in allEvents %}
      <section class=" ">
 
-        <div class="w-100 shadow text-center mt-4 p-2 d-flex justify-content-between">
-            <div>
+        <div class="row w-100 shadow text-center mt-4 p-2">
+            <div class=" p-2 col-6">
+               <div class="w-50  ">
                     <h2 class="mt-4">{{allEvent.nom}}</h2>
                     <br>
-                    
-                
-                    
-                    <p class="font-weight-bold">Date:</p>
-                    <p>{{allEvent.date|date("m/d/Y")}}</p>
+                    <p>Le: {{allEvent.date|date("m/d/Y")}}</p>
+                </div>
                     
             </div>
             
             {# <p>{{event.date}}</p> #}
-            <div class="bg-dark" >
-               <a href="#" type="button" class="btn btn-warning " title="participer">voir</a>
-               <a href="#" type="button" class="btn btn-danger " title="participer">annuler</a>
+            <div class=" col-6 d-flex justify-content-end " >
+                <div class="">
+                    <a href="#" type="button" class="btn btn-warning " title="consulter">Consulter</a>
                
+                    <a href="{{path('cancellation',{id: allEvent.id,token: csrf_token('event-cancel')}) }}" type="button" class="btn btn-danger " title="annuler">Annuler</a>
+               </div>
             </div>
         </div>
         

@@ -43,6 +43,14 @@ class Events
      */
     private $description;
 
+    /**
+     * @ORM\Column(type="string", length=255, nullable=true)
+     */
+    private $tri;
+
+    
+
+   
     public function getId(): ?int
     {
         return $this->id;
@@ -107,4 +115,20 @@ class Events
 
         return $this;
     }
+
+    public function getTri(): ?string
+    {
+        return $this->tri;
+    }
+
+    public function setTri(?string $tri): self
+    {
+        $this->tri = $tri;
+
+        return $this;
+    }
+
+    
+
+  
 }

@@ -6,20 +6,24 @@
 
 {% block  content %}
  <div class="container-fluid ">
-     <div class="d-flex justify-content-between">
-        <div>
-            <h1>Mes évènements</h1>
-            {# <p>{{app.user.pseudo}}</p> #}
+     <div class="row bg-warning p-4 ">
+        <div class="col-4">
         </div>
-        <div>
-            <label for="exampleFormControlSelect1">Trier par</label>
-            <select class="form-control" id="exampleFormControlSelect1">
-            <option>ordre croissant</option>
-            <option>ordre décroissant</option>
-            </select>
+        <div class="col-4 text-center text-light">
+           <h1>Mes évènements</h1>
+        </div>
+        <div class="col-4 d-flex justify-content-end">
+           <div class="w-50">
+              <label for="exampleFormControlSelect1">Trier par</label>
+              <select class="form-control" id="exampleFormControlSelect1">
+              <option>ordre croissant </option>
+              <option>ordre décroissant</option>
+              </select>
+           </div>
         </div>
   
      </div>
+     <p class="h3 font-bold">Nombre d'évènements: {{events|length}}</p>
      {# ici event (peut etre nommé de plusieurs facon est le nom qu'on donne au tableau events #}
      {% for event in events %}
      <section class="d-flex justify-content-md-center  ">

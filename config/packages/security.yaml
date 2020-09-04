@@ -39,5 +39,5 @@ security:
         # - { path: ^/admin, roles: ROLE_ADMIN }
          - { path: ^/profil, roles: ROLE_USER }
     
-    role_hierarchy:
-        ROLE_USER: [ROLE_EDITOR]
+    #role_hierarchy:
+        #ROLE_USER: [ROLE_EDITOR]
