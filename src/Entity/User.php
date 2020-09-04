@@ -51,12 +51,19 @@ class User implements UserInterface
      */
     private $participation;
 
+    /**
+     * @ORM\Column(type="string", length=255)
+     */
+    private $photo;
+
+    
     
 
     public function __construct()
     {
         $this->eventsAccess = new ArrayCollection();
         $this->participation = new ArrayCollection();
+        $this->friend = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -186,5 +193,19 @@ class User implements UserInterface
 
         return $this;
     }
+
+    public function getPhoto(): ?string
+    {
+        return $this->photo;
+    }
+
+    public function setPhoto(string $photo): self
+    {
+        $this->photo = $photo;
+
+        return $this;
+    }
+
+    
 
 }

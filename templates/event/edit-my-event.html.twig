@@ -7,6 +7,7 @@
     <div class="section mt-5 p-3 bg-light shadow ">
        <h1 class="text-center">Création d'un évènement</h1>
         {{form_start(registration_form)}}
+            {# {{ form_row(registration_form.photo,{label:"Insertion image"}) }} #}
             {{ form_row(registration_form.nom,{label:"Nom de l'évènement"}) }}
             {{ form_row(registration_form.description,{label:"Description"}) }}
             

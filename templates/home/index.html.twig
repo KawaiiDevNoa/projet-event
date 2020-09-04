@@ -17,13 +17,13 @@
             {# <p>{{app.user.pseudo}}</p> #}
         </div>
         <div class="col-4 d-flex justify-content-end">
-           <div class="w-50">
+           {# <div class="w-50">
               <label for="exampleFormControlSelect1">Trier par</label>
               <select class="form-control" id="exampleFormControlSelect1">
               <option>ordre croissant </option>
               <option>ordre décroissant</option>
               </select>
-           </div>
+           </div> #}
         </div>
   
      </div>
@@ -49,9 +49,9 @@
               
 
             
-            {# <p>{{event.date}}</p> #}
+            
             <div class=" d-flex justify-content-md-center mb-4">
-              <a href="#" type="button" class="btn btn-warning mr-2 " title="consulter">Consulter</a>
+              <a href="{{path('consult_event',{id: allEvent.id}) }}" type="button" class="btn btn-warning mr-2 " title="consulter">Consulter</a>
                <a href="{{path('app_participation',{id: allEvent.id,token: csrf_token('event-participate')}) }}" type="button" class="btn btn-success " title="participer">je participe</a>
                
             </div>

@@ -3,6 +3,8 @@
 namespace App\Entity;
 
 use App\Repository\EventsRepository;
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
@@ -47,6 +49,16 @@ class Events
      * @ORM\Column(type="string", length=255, nullable=true)
      */
     private $tri;
+
+    /**
+     * @ORM\ManyToMany(targetEntity=InviteFriend::class, mappedBy="email")
+     */
+    private $inviteFriends;
+
+    public function __construct()
+    {
+        $this->inviteFriends = new ArrayCollection();
+    }
 
     
 
@@ -128,6 +140,36 @@ class Events
         return $this;
     }
 
+    /**
+     * @return Collection|InviteFriend[]
+     */
+    public function getInviteFriends(): Collection
+    {
+        return $this->inviteFriends;
+    }
+
+    public function addInviteFriend(InviteFriend $inviteFriend): self
+    {
+        if (!$this->inviteFriends->contains($inviteFriend)) {
+            $this->inviteFriends[] = $inviteFriend;
+            $inviteFriend->addEmail($this);
+        }
+
+        return $this;
+    }
+
+    public function removeInviteFriend(InviteFriend $inviteFriend): self
+    {
+        if ($this->inviteFriends->contains($inviteFriend)) {
+            $this->inviteFriends->removeElement($inviteFriend);
+            $inviteFriend->removeEmail($this);
+        }
+
+        return $this;
+    }
+
+   
+    
     
 
   

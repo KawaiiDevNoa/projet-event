@@ -5,13 +5,15 @@ namespace App\Form;
 use App\Entity\Events;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\DateType;
+use Symfony\Component\Form\Extension\Core\Type\FileType;
+use Symfony\Component\Form\Extension\Core\Type\TextareaType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 use Symfony\Component\Validator\Constraints\Length;
 use Symfony\Component\Validator\Constraints\NotBlank;
 
-class EventFormType extends AbstractType
+class EditEventFormType extends AbstractType
 {
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
@@ -41,7 +43,7 @@ class EventFormType extends AbstractType
             ])
 
 
-            ->add('lieu',TextType::class,[
+            ->add('lieu',TextareaType::class,[
                 'constraints' => [
                     new NotBlank(['message' => 'Veuillez remplir le champs.']), 
                    ]
@@ -57,6 +59,12 @@ class EventFormType extends AbstractType
                     ]),]
                 
                 ])
+            
+            // ->add('photo',FileType::class,[
+            //     'constraints'=>[
+            //         new NotBlank(['message'=>'Veuillez insérer une image'])
+            //     ]
+            // ])
            
             
         ;
