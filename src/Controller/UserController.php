@@ -23,6 +23,7 @@ class UserController extends AbstractController
     }
  
     /**
+     * Enregistrement d'un formulaire
      * @Route("/register", name="app_register")
      * 
      */
@@ -61,6 +62,7 @@ class UserController extends AbstractController
     
 
     /**
+     * Modification du formulaire
      * @Route("/profil-edit", name="app_profil_edit")
     
      */

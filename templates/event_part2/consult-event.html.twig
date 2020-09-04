@@ -1,0 +1,39 @@
+{% extends '_template-navbar.html.twig' %}
+
+{% block title %}Consultation d'un évènement{% endblock %}
+
+{% block content %}
+  <div class="container-fluid row">
+      <div class="col-8 bg-danger ">
+         <img src="" alt="">
+      </div>
+      <div class="col-4">
+         
+        <div class=" w-50 text-center mt-4 w-100">
+            <h2 class="mt-4">{{event.nom}}</h2> 
+              <br>
+            
+            <p class="font-weight-bold">Description:</p>
+            <p>{{event.description}}</p> 
+              <br>
+            
+            <p class="font-weight-bold">Lieu:</p>
+            <p>{{event.lieu}}</p>
+              <br>
+            
+            <p class="font-weight-bold">Date:</p>
+            <p>{{event.date|date("m/d/Y")}}</p>
+            <hr>
+         <div>
+         <h2 class="font-bold">Inviter un ami</h2>
+         {{form_start(registration_form)}}
+            {{ form_row(registration_form.email,{label:"email"}) }}
+            {{ form_row(registration_form.message,{label:"message"}) }}
+           
+            <button type="submit" class="btn btn-primary">Envoyer</button>
+        {{form_end(registration_form)}}</div>
+      
+      </div>
+  </div>
+ 
+{% endblock %}

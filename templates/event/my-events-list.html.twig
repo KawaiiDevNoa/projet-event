@@ -1,9 +1,7 @@
+{% extends '_template-navbar.html.twig' %}
 
 
-    {% extends '_template-navbar.html.twig' %}
-
-
-{% block title %}Accueil{% endblock %}
+{% block title %}Mes évènements{% endblock %}
 
 
 {% block  content %}
@@ -12,48 +10,42 @@
         <div class="col-4">
         </div>
         <div class="col-4 text-center text-light">
-            <p class="h1">BIENVENUE</h1>
-            <p  class="h2">sur le site <strong>ELEPHANT MEMORY</strong></p>
-            {# <p>{{app.user.pseudo}}</p> #}
+           <h1>Mes évènements</h1>
         </div>
         <div class="col-4 d-flex justify-content-end">
-           {# <div class="w-50">
+           <div class="w-50">
               <label for="exampleFormControlSelect1">Trier par</label>
               <select class="form-control" id="exampleFormControlSelect1">
               <option>ordre croissant </option>
               <option>ordre décroissant</option>
               </select>
-           </div> #}
+           </div>
         </div>
   
      </div>
+     <p class="h3 font-bold">Nombre d'évènements: {{events|length}}</p>
      {# ici event (peut etre nommé de plusieurs facon est le nom qu'on donne au tableau events #}
-     <p class="h3 font-bold">Nombre d'évènements: {{allEvents|length}}</p>
-     {% for allEvent in allEvents %}
+     {% for event in events %}
      <section class="d-flex justify-content-md-center  ">
-       
+
         <div class=" shadow w-50 text-center mt-4">
-            <h2 class="mt-4">{{allEvent.nom}}</h2>
+            <h2 class="mt-4">{{event.nom}}</h2>
               <br>
             
             <p class="font-weight-bold">Description:</p>
-            <p>{{allEvent.description}}</p>
+            <p>{{event.description}}</p>
               <br>
             
             <p class="font-weight-bold">Lieu:</p>
-            <p>{{allEvent.lieu}}</p>
+            <p>{{event.lieu}}</p>
               <br>
             
             <p class="font-weight-bold">Date:</p>
-            <p>{{allEvent.date|date("m/d/Y")}}</p>
-              
-
-            
-            
-            <div class=" d-flex justify-content-md-center mb-4">
-              <a href="{{path('consult_event',{id: allEvent.id}) }}" type="button" class="btn btn-warning mr-2 " title="consulter">Consulter</a>
-               <a href="{{path('app_participation',{id: allEvent.id,token: csrf_token('event-participate')}) }}" type="button" class="btn btn-success " title="participer">je participe</a>
-               
+            <p></p>
+            {# <p>{{event.date}}</p> #}
+            <div class="row justify-content-md-center mb-4">
+               <a href="{{path('app_edit_my_event',{id: event.id}) }}" type="button" class="btn btn-danger mr-2" title="modifier">💡</a>
+               <a href="{{path('delete',{id: event.id,token: csrf_token('event-delete')}) }}"  type="button" class="btn btn-success" title="supprimer">❌</a>
             </div>
         </div>
         
@@ -63,6 +55,3 @@
  </div>
 
 {% endblock %}
-
-  
-

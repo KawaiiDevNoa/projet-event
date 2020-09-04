@@ -3,6 +3,8 @@
 namespace App\Entity;
 
 use App\Repository\UserRepository;
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Security\Core\User\UserInterface;
 
@@ -43,6 +45,26 @@ class User implements UserInterface
      * @ORM\Column(type="string", length=255)
      */
     private $token;
+
+    /**
+     * @ORM\ManyToMany(targetEntity=Events::class)
+     */
+    private $participation;
+
+    /**
+     * @ORM\Column(type="string", length=255)
+     */
+    private $photo;
+
+    
+    
+
+    public function __construct()
+    {
+        $this->eventsAccess = new ArrayCollection();
+        $this->participation = new ArrayCollection();
+        $this->friend = new ArrayCollection();
+    }
 
     public function getId(): ?int
     {
@@ -145,4 +167,45 @@ class User implements UserInterface
 
         return $this;
     }
+
+    /**
+     * @return Collection|Events[]
+     */
+    public function getParticipation(): Collection
+    {
+        return $this->participation;
+    }
+
+    public function addParticipation(Events $participation): self
+    {
+        if (!$this->participation->contains($participation)) {
+            $this->participation[] = $participation;
+        }
+
+        return $this;
+    }
+
+    public function removeParticipation(Events $participation): self
+    {
+        if ($this->participation->contains($participation)) {
+            $this->participation->removeElement($participation);
+        }
+
+        return $this;
+    }
+
+    public function getPhoto(): ?string
+    {
+        return $this->photo;
+    }
+
+    public function setPhoto(string $photo): self
+    {
+        $this->photo = $photo;
+
+        return $this;
+    }
+
+    
+
 }
