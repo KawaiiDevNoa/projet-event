@@ -3,9 +3,9 @@
 {% block title %}Modification profil{% endblock %}
 
 {% block content %}
-
- <div class="container-fluid d-flex justify-content-center ">
-    <div class="section mt-5 p-3 bg-light shadow ">
+ {# le vh est temporaire #}
+ <div class="container-fluid d-flex justify-content-center vh-100  row ">
+    <div class="section  p-3 bg-light shadow  align-self-center">
        <h1 class="text-center">Modification profil</h1>
         {{form_start(registration_form)}}
             {{ form_row(registration_form.email,{label:"Adresse email"}) }}

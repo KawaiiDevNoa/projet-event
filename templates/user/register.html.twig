@@ -3,9 +3,9 @@
 {% block title %}Formulaire d'inscription{% endblock %}
 
 {% block content %}
-  
-  <div class="container-fluid d-flex justify-content-center ">
-    <div class="section mt-5 p-3 bg-light shadow ">
+  {# le h est temporaire #}
+  <div class="container-fluid d-flex justify-content-center h-100 ">
+    <div class="section mt-5 mb-5 p-3 bg-light shadow ">
        <h1 class="text-center">Formulaire d'inscription</h1>
         {{form_start(registration_form)}}
             {{ form_row(registration_form.email,{label:"Adresse email"}) }}
