@@ -11,7 +11,7 @@
         <div class="col-4">
         </div>
         <div class="col-4 text-center text-light">
-           <h1>Mes Participations</h1>
+           <h1 class="text-dark">Mes Participations</h1>
             {# <p>{{app.user.pseudo}}</p> #}
         </div>
         <div class="col-4 d-flex justify-content-end">
@@ -28,10 +28,14 @@
      <p class="h3 font-bold">Nombre d'évènements: {{allEvents|length}}</p>
      {# ici event (peut etre nommé de plusieurs facon est le nom qu'on donne au tableau events #}
      {% for allEvent in allEvents %}
-     <section class=" ">
-
+     <section class="">
+        
         <div class="row w-100 shadow text-center mt-4 p-2">
-            <div class=" p-2 col-6">
+        <figure class="figure col-3 mt-3 text-right">
+                    <img class="figure-img img-fluid" src="https://loremflickr.com/300/200/event/">
+           </figure>
+            <div class=" p-2 col-3">
+            
                <div class="w-50  ">
                     <h2 class="mt-4">{{allEvent.nom}}</h2>
                     <br>

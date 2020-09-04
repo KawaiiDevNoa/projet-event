@@ -51,10 +51,7 @@ class User implements UserInterface
      */
     private $participation;
 
-    /**
-     * @ORM\Column(type="string", length=255)
-     */
-    private $photo;
+    
 
     
     
@@ -194,18 +191,7 @@ class User implements UserInterface
         return $this;
     }
 
-    public function getPhoto(): ?string
-    {
-        return $this->photo;
-    }
-
-    public function setPhoto(string $photo): self
-    {
-        $this->photo = $photo;
-
-        return $this;
-    }
-
+   
     
 
 }

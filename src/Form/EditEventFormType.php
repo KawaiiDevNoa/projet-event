@@ -60,11 +60,11 @@ class EditEventFormType extends AbstractType
                 
                 ])
             
-            // ->add('photo',FileType::class,[
-            //     'constraints'=>[
-            //         new NotBlank(['message'=>'Veuillez insérer une image'])
-            //     ]
-            // ])
+             ->add('photo',FileType::class,[
+                'constraints'=>[
+                 new NotBlank(['message'=>'Veuillez insérer une image'])
+                ]
+            ])
            
             
         ;
